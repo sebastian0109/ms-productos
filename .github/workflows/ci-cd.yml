@@ -1,4 +1,4 @@
-name: CI/CD ms-cursos
+name: CI/CD ms-productos
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 env:
-  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/ms-cursos
-  SERVICE: aulanube_ms-cursos
+  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/ms-productos
+  SERVICE: aulanube_ms-productos
 
 jobs:
   # 1) Build + pruebas (usa H2 en memoria, no necesita base de datos real)
@@ -73,4 +73,4 @@ jobs:
         run: |
           sleep 20
           ssh -i key.pem -o StrictHostKeyChecking=accept-new ubuntu@"$HOST" \
-            "curl -fsS http://localhost:8082/api/cursos && docker service ls --filter name=$SERVICE"
+            "curl -fsS http://localhost:8081/api/productos && docker service ls --filter name=$SERVICE"
